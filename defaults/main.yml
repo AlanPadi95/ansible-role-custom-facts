@@ -1,0 +1,7 @@
+---
+
+    facts_path:
+        Linux: '/etc/ansible/facts.d'
+        Darwin: '/etc/ansible/facts.d'
+        Windows: 'C:\.ansible\facts.d'
+        Default: '/etc/ansible/facts.d'

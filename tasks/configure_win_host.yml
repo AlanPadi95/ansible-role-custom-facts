@@ -1,0 +1,20 @@
+---
+
+- name: "Create .ansible directory"
+  file:
+    path: C:\.ansible
+    state: "directory"
+
+- name: "Create custom fact directory"
+  file:
+    path: "{{ facts_path }}"
+    state: "directory"
+
+- name: "Configure custom facts in remote"
+  win_copy:
+    src: "{{ role_path }}/files/windows/"
+    dest: "{{ facts_path }}"
+
+- name: "Re-run setup to use custom facts"
+  setup: 
+    fact_path: "{{ facts_path }}"

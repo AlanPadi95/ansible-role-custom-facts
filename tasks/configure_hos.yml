@@ -1,0 +1,35 @@
+---
+
+- name: "Create ansible directory"
+  file:
+    path: /etc/ansible
+    state: "directory"
+
+- name: "Create custom fact directory"
+  file:
+    path: "{{ facts_path }}"
+    state: "directory"
+
+- name: "Lookup fact files"
+  find:
+    paths: "{{ role_path }}/files/unix/"
+    file_type: file
+    patterns: "*.fact"
+  register: filelist
+  
+- name: "Change facts permissions"
+  file:
+    path: "{{ item.path }}"
+    state: file
+    mode: "0775"
+  with_items: "{{ filelist.files }}"
+    
+- name: "Configure custom facts in remote"
+  copy:
+    src: "{{ role_path }}/files/unix/"
+    dest: "{{ facts_path }}"
+    remote_src: yes
+
+- name: "Re-run setup to use custom facts"
+  setup: ~
+      

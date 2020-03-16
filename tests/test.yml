@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  gather_facts: true
+  remote_user: root
+  roles:
+    - ansible-role-custom-facts

@@ -1,0 +1,13 @@
+---
+
+  - set_fact:
+      facts_path: "{{ item.value }}"
+      cacheable: yes
+    loop: "{{ lookup('dict', facts_path) }}"
+    when: "ansible_system in item.key"
+  
+  - import_tasks: "configure_host.yml"
+    when: '"Windows" not in ansible_system'
+
+  - import_tasks: "configure_win_host.yml"
+    when: '"Windows" in ansible_system'
