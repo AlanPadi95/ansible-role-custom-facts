@@ -1,6 +1,13 @@
 ---
-- hosts: localhost
-  gather_facts: true
-  remote_user: root
-  roles:
-    - ansible-role-custom-facts
+
+  - hosts: localhost
+    become: yes
+    # pre_tasks:
+      # - file:
+      #     path: "roles/"
+      #     state: directory
+      # - copy:
+      #     src: "../../ansible-role-custom-facts"
+      #     dest: "roles/"
+    roles:
+      - ansible-role-custom-facts

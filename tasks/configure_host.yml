@@ -1,5 +1,9 @@
 ---
 
+- name: "Install psutil from pip"
+  pip:
+    name: psutil
+
 - name: "Create ansible directory"
   file:
     path: /etc/ansible
