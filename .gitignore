@@ -1,2 +1,3 @@
 tests/roles
 .history/*
+**.DS_Store
