@@ -1,38 +1,72 @@
-Role Name
+ansible-role-custom-facts
 =========
 
-A brief description of the role goes here.
+The role configure the remote machines to return extra facts when 
+Ansible performs the `gather_facts` or when the `setup` module is executed.
+
+The role evaluates the **machine OS family** to configure **Windows facts** 
+or **Unix-based OS facts**.
+
+Ansible are very simple to implement but has to be configured in the remote server.
+This role will helps you to perform the configuration fast and easy.
+ 
+The implementation of this role has been done following the article 
+***[Ansible custom facts](https://medium.com/@jezhalford/ansible-custom-facts-1e1d1bf65db8)***
+published by ***[@jezhalford](https://github.com/jezhalford)***.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+- **Ansible in your control node**.
+- **Unix-based OS remote nodes**:
+  - **Python 2.7** or **Python 3.5 o latest**.
+- **Windows remote nodes**:
+  - **PowerShell 5  or latest**.
+ 
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+The role has no parameters but there is a variable 
+setted by default with the OS distribution facts path.
+
+The variable `facts_path` sets the path where the 
+custom fact script will be placed. In Unix-based OS, 
+this path is `/etc/ansible/facts.d` by default but,
+on Windows, this path can be personalized. For Windows, 
+I choose to place the custom facts under `C:\.ansible\facts.d`
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+This role has no dependencies.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+To perform the environment configuration, you will need 
+to have **admin** permissions, so remember to `become: yes`.
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yml
+---
+
+  - hosts: all
+    become: yes
+    roles:
+      - ansible-role-custom-facts
+```
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+### Alan Padierna Fernández
+
+Full Stack Software Engineer. Please, follow me on:
+
+- [GitHub](https://github.com/AlanPadi95)
+- [LinkedIn](https://www.linkedin.com/in/alan-padierna-fern%C3%A1ndez-199a48152/)
