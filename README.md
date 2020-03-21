@@ -20,8 +20,10 @@ Requirements
 - **Ansible in your control node**.
 - **Unix-based OS remote nodes**:
   - **Python 2.7** or **Python 3.5 o latest**.
+  - **Sudo permissions**.
 - **Windows remote nodes**:
   - **PowerShell 5  or latest**.
+  - **Administrator** permissions.
  
 
 Role Variables
