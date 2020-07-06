@@ -16,5 +16,5 @@
     dest: "{{ facts_path }}"
 
 - name: "Re-run setup to use custom facts"
-  setup: 
+  setup:
     fact_path: "{{ facts_path }}"
