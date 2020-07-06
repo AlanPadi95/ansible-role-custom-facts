@@ -6,7 +6,7 @@
     loop: "{{ lookup('dict', facts_path) }}"
     when: "ansible_system in item.key"
 
-- import_tasks: "configure_host.yml"
+  - import_tasks: "configure_host.yml"
     when: '"Windows" not in ansible_system'
 
   - import_tasks: "configure_win_host.yml"
