@@ -1,4 +1,6 @@
 ---
+  - name: ansible-lint
+    uses: ansible/ansible-lint-action@v4.1.0.post0
 
   - set_fact:
       facts_path: "{{ item.value }}"
