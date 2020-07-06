@@ -20,14 +20,14 @@
     file_type: file
     patterns: "*.fact"
   register: filelist
-  
+
 - name: "Change facts permissions"
   file:
     path: "{{ item.path }}"
     state: file
     mode: "0775"
   with_items: "{{ filelist.files }}"
-    
+
 - name: "Configure custom facts in remote"
   copy:
     src: "{{ role_path }}/files/unix/"
@@ -36,4 +36,3 @@
 
 - name: "Re-run setup to use custom facts"
   setup: ~
-      
